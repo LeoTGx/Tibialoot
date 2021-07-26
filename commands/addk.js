@@ -18,6 +18,7 @@ module.exports = {
     	if(!chars[args[0]]){
     		chars[args[0]] = {
     			members: {},
+                coin: 20000,
                 permited:[message.author.id]
     		}
 

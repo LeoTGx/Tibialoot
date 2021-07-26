@@ -59,9 +59,9 @@ client.on('message', message =>{
         client.commands.get('commandlist').execute(message, args);
     } 
 
-    // if(command == 'chars'){
-    //     client.commands.get('chars').execute(message, args);
-    // } 
+    if(command == 'coin'){
+         client.commands.get('coin').execute(message, args);
+    } 
 
     if(command == 'undo'){
         client.commands.get('undo').execute(message, args);
@@ -74,7 +74,11 @@ client.on('message', message =>{
     if(command == 'addper'){
     	let firstId = client.commands.get('addper').execute(message, args); 
         if(firstId != 0){
-        	client.users.cache.get(firstId).send(`${client.users.cache.get(firstId).username}, <@${message.author.id}> tentou adicionar permissoes para ${client.users.cache.get(message.mentions.users.first().id)} no Leader ${args[0]}.`);
+        	try{
+        		client.users.cache.get(firstId).send(`${client.users.cache.get(firstId).username}, <@${message.author.id}> tentou adicionar permissoes para ${client.users.cache.get(message.mentions.users.first().id)} no Leader ${args[0]}.`);
+        	}catch(e){
+        		console.log(e);
+        	}
         }
     }
 
@@ -105,12 +109,20 @@ client.on('message', message =>{
         		console.log(id);
         		for(i in id[1]){
         			if(id[1][i] != undefined){
-        				client.users.cache.get(id[1][i]).send(`${client.users.cache.get(id[1][i]).username}, <@${message.author.id}> (${args[0]}) te pagou ${id[2][i]}`);
+        				try{
+        					client.users.cache.get(id[1][i]).send(`${client.users.cache.get(id[1][i]).username}, <@${message.author.id}> (${args[0]}) te pagou ${id[2][i]}`);
+        				}catch(e){
+        					console.log(e);
+        				}
         			}
         		}
         	}else{
         		if(id[0] != undefined){
-        			client.users.cache.get(id[0]).send(`${client.users.cache.get(id[0]).username}, <@${message.author.id}> (${args[0]}) te pagou ${id[1]}`);
+					try{
+	        			client.users.cache.get(id[0]).send(`${client.users.cache.get(id[0]).username}, <@${message.author.id}> (${args[0]}) te pagou ${id[1]}`);
+					}catch(e){
+						console.log(e);
+					}
         		}
         	}
         }

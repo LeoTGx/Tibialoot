@@ -12,12 +12,12 @@ module.exports = {
         [args[0], args[1]] = [args[1], args[0]];
 
         if(args.length != 3){
-            message.channel.send(`<@${message.author.id}>` +' O comando certo é: `!addchar [Leader] 2 [Member] @[User]` para adicionar Member a lista de Leader');
+            message.channel.send(`<@${message.author.id}>` +' O comando certo é: `!addchar [Member] 2 [Leader]  @[User]` para adicionar Member a lista de Leader');
             return;
         }
 
         if(args[1] == undefined){
-            message.channel.send(`<@${message.author.id}>` +' O comando certo é: `!addchar [Leader] 2 [Member]` para adicionar Member a lista de Leader');
+            message.channel.send(`<@${message.author.id}>` +' O comando certo é: `!addchar [Member] 2 [Leader]` para adicionar Member a lista de Leader');
             return;
         }
 
@@ -38,7 +38,7 @@ module.exports = {
         mention = message.mentions.users.first();
 
         if(!mention){
-            message.channel.send(`<@${message.author.id}>` +' O comando certo é: `!addchar [Leader] 2 [Member] @[User]` para adicionar Member a lista de Leader');
+            message.channel.send(`<@${message.author.id}>` +' O comando certo é: `!addchar [Member] 2 [Leader] @[User]` para adicionar Member a lista de Leader');
             return;
         }
 

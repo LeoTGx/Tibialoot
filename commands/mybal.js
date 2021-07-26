@@ -21,6 +21,7 @@ module.exports = {
         }
 
         let mes = [];
+        let aux = false;
         mes.push(args[0]+' sua lista de lideres:')
     	for(i in chars){
     		for(j in chars[i].members){
@@ -28,13 +29,22 @@ module.exports = {
                     if(chars[i].members[args[0]].id){
     				    if(chars[i].members[args[0]].id == message.author.id){
                             mes.push(`  ${i} te deve: ${chars[i].members[j].balance}`);
+                            aux = true;
                         }
                     }else{
-                        mes.push(`  ${i} te deve: ${chars[i].members[j].balance}`);
+                        if(chars[i].members[args[0]].id == undefined){
+                            mes.push(`  ${i} te deve: ${chars[i].members[j].balance}`);
+                            aux = true;
+                        }
                     }
     			}
     		}
-    	}
+    	} 
+
+        if(!aux){
+            message.author.send("You don't have permissions");
+            return;
+        }
 
         message.author.send(mes);
         

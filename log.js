@@ -6,13 +6,28 @@ module.exports = {
     //     log[id][]
     // }
 	AddLog:function(command,log,id){
-		for (var i = 9; i > 0; i--) {
-			log[id].command[i] = log[id].command[i-1];
+		if(log[id]){
+			
+			for (var i = 9; i > 0; i--) {
+				log[id].command[i] = log[id].command[i-1];
+			}
+			log[id].command[0] = command;
+			arq2.writeFile('./log.json', JSON.stringify(log), (err) => {
+					if(err) console.log(err);
+				});
+		}else{
+			log[id] = {
+				command: []
+		   }
+
+		   	for (var i = 9; i > 0; i--) {
+				log[id].command[i] = log[id].command[i-1];
+			}
+			log[id].command[0] = command;
+			arq2.writeFile('./log.json', JSON.stringify(log), (err) => {
+					if(err) console.log(err);
+				});
 		}
-		log[id].command[0] = command;
-		arq2.writeFile('./log.json', JSON.stringify(log), (err) => {
-    			if(err) console.log(err);
-    		});
 	},
 
 	SubLog:function(log,id){
